@@ -1,18 +1,19 @@
 import 'package:fifa_v1/models/player_model.dart';
 
 class TeamModel {
-  int uid;
+  String uid;
   late int squadSize;
   String teamName;
   String country;
-  late double budget;
+  String budget;
   late int tablePosition;
   List<Player> squad = [];
 
   TeamModel({
     required this.uid,
     required this.teamName,
-    required this.country
+    required this.country,
+    required this.budget
   });
 
   void setSquadSize() {
@@ -27,7 +28,15 @@ class TeamModel {
     squad.add(playerModel);
   }
 
-  void setBudget(double newBudget) {
+  void setBudget(String newBudget) {
     budget = newBudget;
+  }
+
+  factory TeamModel.fromMap(Map<String, dynamic> data) {
+    return TeamModel(uid: data["uid"],
+    teamName: data["teamName"],
+    country: data["country"],
+    budget: data["budget"]
+    );
   }
 }

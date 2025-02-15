@@ -1,14 +1,24 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fifa_v1/models/team_model.dart';
 import 'package:fifa_v1/models/tournament_model.dart';
 
-class TournamentService {
+class FireStoreService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  Stream <List<Tournament>> getTournamentSteam() {
+  Stream <List<Tournament>> getTournamentStream() {
     return _firestore.collection('tournament').snapshots().map((snapshot) {
       return snapshot.docs.map((doc) {
         return Tournament.fromMap(doc.data());
       }).toList();
     });
   }
+
+  Stream <List<TeamModel>> getTeamStream() {
+    return _firestore.collection('teams').snapshots().map((snapshot) {
+      return snapshot.docs.map((doc) {
+        return TeamModel.fromMap(doc.data());
+      }).toList();
+    });
+  }
+
 }

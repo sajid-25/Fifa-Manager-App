@@ -1,24 +1,36 @@
-import 'package:fifa_v1/fetch_data/build_document_stream.dart';
+import 'package:fifa_v1/models/team_model.dart';
 import 'package:fifa_v1/models/tournament_model.dart';
 import 'package:flutter/material.dart';
 
 class ShowDocumentStream extends StatelessWidget {
-  ShowDocumentStream({super.key});
-  final TournamentService _tournamentService = TournamentService();
+  final Stream documentStream;
+  const ShowDocumentStream({
+    super.key,
+    required this.documentStream,
+  });
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-      stream: _tournamentService.getTournamentSteam(),
+      stream: documentStream,
       builder: (context, snapshot) {
         if (snapshot.hasError) return const Center(child: Text("Error loading tournaments"));
-          if (snapshot.connectionState == ConnectionState.waiting) return const Center(child: CircularProgressIndicator());
-          if (!snapshot.hasData || snapshot.data!.isEmpty) return const Center(child: Text("No tournaments available"));
-        List<Tournament> tournaments = snapshot.data!;
+        if (snapshot.connectionState == ConnectionState.waiting) return const Center(child: CircularProgressIndicator());
+        if (!snapshot.hasData || snapshot.data!.isEmpty) return const Center(child: Text("No tournaments available"));
+        //
+
+        List<dynamic> documents = snapshot.data;
+        
         return ListView.builder(
-          itemCount: tournaments.length,
+          itemCount: documents.length,
           itemBuilder: (context, index) {
-            return _buildTournamentTile(tournaments[index], context);
+            var doc = documents[index];
+            if(doc is Tournament) {
+              return _buildTournamentTile(doc, context);
+            }
+            if (doc is TeamModel) {
+              return _buildTeamTile(doc, context);
+            }
           },
         );
       }
@@ -32,6 +44,17 @@ class ShowDocumentStream extends StatelessWidget {
       ),
       subtitle: Text(
         tournament.tournamentType
+      ),
+    );
+  }
+
+  Widget _buildTeamTile(TeamModel teammodel, BuildContext context) {
+    return ListTile(
+      title: Text(
+        teammodel.teamName
+      ),
+      subtitle: Text(
+        teammodel.budget
       ),
     );
   }
