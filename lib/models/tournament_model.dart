@@ -1,24 +1,35 @@
-import 'package:fifa_v1/models/team_model.dart';
 
 class Tournament {
     String tournamentName;
     String tournamentType;
     int totalTeams;
     int currentSeason;
-    List<TeamModel> teams = [];
+    List<String> teams = [];
 
     Tournament({
       required this.tournamentName,
       required this.tournamentType,
       required this.totalTeams,
       required this.currentSeason,
+      required this.teams
     });
 
-    void addTeam(TeamModel teamModel) {
-      teams.add(teamModel);
+    void addTeam(String teamUid) {
+      teams.add(teamUid);
+    }
+
+    void removeTeam(int index) {
+      teams.removeAt(index);
+    }
+
+    factory Tournament.fromMap(Map<String, dynamic> data) {
+      return Tournament(
+        tournamentName: data["tournamentName"] ?? "Unknown",
+        tournamentType: data["tournamentType"] ?? "Unkonwn",
+        totalTeams: data["totalTeams"] ?? 0,
+        currentSeason: data["currentSeasone"] ?? 0,
+        teams: List<String>.from(data["teams"] ?? []),
+        
+      );
     }
 }
-
-List<Tournament> tournamentList = [
-  Tournament(tournamentName: 'Ashes', tournamentType: 'League', totalTeams: 14, currentSeason: 2)
-];

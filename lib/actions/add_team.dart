@@ -13,8 +13,8 @@ class AddTeam extends StatelessWidget {
 
   void createNewTeam(BuildContext context) {
     double? budget = double.parse(_teamBudgetController.text);
-    TeamModel teamModel = TeamModel(id: 00, budget: budget, teamName: _teamNameController.text);
-    tournament.addTeam(teamModel);
+    //TeamModel teamModel = TeamModel(uid: 00, teamName: _teamNameController.text);
+    //tournament.addTeam(teamModel);
     Navigator.pop(context);
   }
 

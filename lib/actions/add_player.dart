@@ -47,8 +47,8 @@ class _AddPlayerState extends State<AddPlayer> {
     int? playerOVR = int.parse(_ovrController.text);
     double? playerValue = double.parse(_valueController.text);
     double? playerWage = double.parse(_wageController.text);
-    PlayerModel playerModel = PlayerModel(id: 1, name: _nameController.text, age: playerAge, position: playerPosition, overall: playerOVR, value: playerValue, wage: playerWage);
-    widget.teamModel.addPlayer(playerModel);
+    //PlayerModel playerModel = PlayerModel(id: 1, name: _nameController.text, age: playerAge, position: playerPosition, overall: playerOVR, value: playerValue, wage: playerWage);
+    //widget.teamModel.addPlayer(playerModel);
     Navigator.pop(context);
   }
 

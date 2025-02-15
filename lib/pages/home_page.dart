@@ -1,5 +1,6 @@
-import 'package:fifa_v1/models/tournament_model.dart';
-import 'package:fifa_v1/pages/tournament_pages/tournament_page.dart';
+import 'package:fifa_v1/pages/player_page.dart';
+import 'package:fifa_v1/pages/team_page.dart';
+import 'package:fifa_v1/pages/tournament_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -10,46 +11,50 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  
+  int _currentIndex = 0;
+  final List<String> screensName = [
+    'Tournaments', 'Teams', 'Players'
+  ];
+
   @override
   Widget build(BuildContext context) {
+    final List<Widget> screens = [
+      TournamentPage(),
+      TeamPage(),
+      PlayerPage()
+    ];
     return Scaffold(
-      backgroundColor: Colors.black,
       appBar: AppBar(
         title: Text(
-          'U F C',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 25,
-            fontWeight: FontWeight.bold
-          ),
+          screensName[_currentIndex]
         ),
         centerTitle: true,
-        backgroundColor: Colors.black,
       ),
-      body: ListView.builder(
-        itemCount: tournamentList.length,
-        itemBuilder: (context, index) => ListTile(
-          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => TournamentPage(tournament: tournamentList[index],))),
-          title: Text(
-            tournamentList[index].tournamentName,
-          ),
-          titleTextStyle: TextStyle(
-            color: Colors.white,
-            fontSize: 20
-          ),
-          leading: Icon(
-            Icons.sports_soccer,
-            color: Colors.white,
-          ),
-          subtitle: Text(
-            'Season ${tournamentList[index].currentSeason.toString()}',
-          ),
-          subtitleTextStyle: TextStyle(
-            color: Colors.white
-          ),
-          splashColor: Colors.transparent,
-        ),
+      body: screens[_currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: (index) {
+            setState(() {
+              _currentIndex = index;
+            });
+          },
+        items: [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.emoji_events_outlined),
+              activeIcon: Icon(Icons.emoji_events),
+              label: 'Tournaments',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.flag_circle_outlined),
+              activeIcon: Icon(Icons.flag),
+              label: 'Teams',
+            ),
+            BottomNavigationBarItem(
+              activeIcon: Icon(Icons.face_retouching_natural),
+              icon: Icon(Icons.face_retouching_natural_outlined),
+              label: 'Players',
+            ),
+        ],
       ),
     );
   }

@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: HomePage(),
       theme: theme,
-      debugShowCheckedModeBanner: false, // Optional: Removes debug banner
+      debugShowCheckedModeBanner: false,
     );
   }
 }
