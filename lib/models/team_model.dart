@@ -33,10 +33,10 @@ class TeamModel {
   }
 
   factory TeamModel.fromMap(Map<String, dynamic> data) {
-    return TeamModel(uid: data["uid"],
-    teamName: data["teamName"],
-    country: data["country"],
-    budget: data["budget"]
+    return TeamModel(uid: data["uid"] ?? "Not Registerd",
+    teamName: data["teamName"] ?? "Not Registerd",
+    country: data["country"] ?? "Not Registerd",
+    budget: data["budget"] ?? "Not Registerd"
     );
   }
 }

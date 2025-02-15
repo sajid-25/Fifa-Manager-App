@@ -1,18 +1,18 @@
 class Player {
-  int id;
+  String uid;
   String name;
   int age;
   String country;
   String position;
   int overall;
   int playedMinitues;
-  double value;
-  double wage;
+  String value;
+  String wage;
   String team;
   int motm;
 
   Player({
-    required this.id,
+    required this.uid,
     required this.name,
     required this.age,
     required this.country,
@@ -28,9 +28,23 @@ class Player {
   void setAge() { age++; }
   void setPosition(String newPosition) { position = newPosition; }
   void setOverall(int newOverall) { overall = newOverall; }
-  void setValue(double newValue) { value = newValue; }
-  void setWage(double newWage) { wage = newWage; }
+  void setValue(String newValue) { value = newValue; }
+  void setWage(String newWage) { wage = newWage; }
   void setTeam(String newTeam) { team = newTeam; }
+
+  factory Player.fromMap(Map<String, dynamic> data) {
+    return Player(
+      uid: data["uid"] ?? "Not Registerd",
+      name: data["name"] ?? "Not Registerd",
+      age: data["age"] ?? 0,
+      country: data["country"] ?? "Not Registerd",
+      position: data["position"] ?? "Not Registerd",
+      overall: data["overall"] ?? 0,
+      value: data["value"] ?? "Not Registerd",
+      wage: data["wage"] ?? "Not Registerd",
+      team: data["team"] ?? "Not Registerd",
+    );
+  }
 }
 
 class Attacker extends Player {
@@ -38,7 +52,7 @@ class Attacker extends Player {
   int assists;
 
   Attacker({
-    required super.id,
+    required super.uid,
     required super.name,
     required super.age,
     required super.country,
@@ -64,7 +78,7 @@ class MidFielder extends Player {
   int tackleWon;
 
   MidFielder({
-    required super.id,
+    required super.uid,
     required super.name,
     required super.age,
     required super.country,
@@ -94,7 +108,7 @@ class Diffender extends Player {
   int passAcc;
 
   Diffender({
-    required super.id,
+    required super.uid,
     required super.name,
     required super.age,
     required super.country,
@@ -122,7 +136,7 @@ class GoalKeeper extends Player {
   int saves;
    
   GoalKeeper({
-    required super.id,
+    required super.uid,
     required super.name,
     required super.age,
     required super.country,

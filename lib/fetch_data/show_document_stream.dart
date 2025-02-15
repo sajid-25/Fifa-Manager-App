@@ -1,3 +1,4 @@
+import 'package:fifa_v1/models/player_model.dart';
 import 'package:fifa_v1/models/team_model.dart';
 import 'package:fifa_v1/models/tournament_model.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class ShowDocumentStream extends StatelessWidget {
         if (snapshot.hasError) return const Center(child: Text("Error loading tournaments"));
         if (snapshot.connectionState == ConnectionState.waiting) return const Center(child: CircularProgressIndicator());
         if (!snapshot.hasData || snapshot.data!.isEmpty) return const Center(child: Text("No tournaments available"));
-        //
+        
 
         List<dynamic> documents = snapshot.data;
         
@@ -30,6 +31,9 @@ class ShowDocumentStream extends StatelessWidget {
             }
             if (doc is TeamModel) {
               return _buildTeamTile(doc, context);
+            }
+            if(doc is Player) {
+              return _buildPlayerTile(doc, context);
             }
           },
         );
@@ -55,6 +59,17 @@ class ShowDocumentStream extends StatelessWidget {
       ),
       subtitle: Text(
         teammodel.budget
+      ),
+    );
+  }
+
+  Widget _buildPlayerTile(Player player, BuildContext context) {
+    return ListTile(
+      title: Text(
+        player.name
+      ),
+      subtitle: Text(
+        player.position
       ),
     );
   }
