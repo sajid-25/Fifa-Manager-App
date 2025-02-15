@@ -26,7 +26,7 @@ class Tournament {
       return Tournament(
         tournamentName: data["tournamentName"] ?? "Unknown",
         tournamentType: data["tournamentType"] ?? "Unkonwn",
-        totalTeams: data["totalTeams"] ?? 0,
+        totalTeams: data["totalTeams"] ?? 10,
         currentSeason: data["currentSeasone"] ?? 0,
         teams: List<String>.from(data["teams"] ?? []),
       );

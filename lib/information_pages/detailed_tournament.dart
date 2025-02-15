@@ -13,7 +13,7 @@ class DetailedTournament extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
       ),
-      body: GestureDetector(
+      body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: Column(

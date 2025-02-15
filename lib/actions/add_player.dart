@@ -1,5 +1,3 @@
-import 'package:fifa_v1/models/player_model.dart';
-import 'package:fifa_v1/models/team_model.dart';
 import 'package:flutter/material.dart';
 
 class AddPlayer extends StatefulWidget {
