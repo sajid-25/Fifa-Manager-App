@@ -26,7 +26,10 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          screensName[_currentIndex]
+          screensName[_currentIndex],
+          style: TextStyle(
+            color: const Color.fromARGB(255, 122, 230, 238)
+          ),
         ),
         centerTitle: true,
       ),

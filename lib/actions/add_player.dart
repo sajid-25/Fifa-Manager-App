@@ -3,10 +3,10 @@ import 'package:fifa_v1/models/team_model.dart';
 import 'package:flutter/material.dart';
 
 class AddPlayer extends StatefulWidget {
-  final TeamModel teamModel;
+  //final TeamModel teamModel;
   const AddPlayer({
     super.key,
-    required this.teamModel
+    //required this.teamModel
   });
 
   @override

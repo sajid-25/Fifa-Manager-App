@@ -1,3 +1,4 @@
+import 'package:fifa_v1/information_pages/detailed_tournament.dart';
 import 'package:fifa_v1/models/player_model.dart';
 import 'package:fifa_v1/models/team_model.dart';
 import 'package:fifa_v1/models/tournament_model.dart';
@@ -43,11 +44,25 @@ class ShowDocumentStream extends StatelessWidget {
 
   Widget _buildTournamentTile(Tournament tournament, BuildContext context) {
     return ListTile(
-      title: Text(
-        tournament.tournamentName
+      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => DetailedTournament(
+        tournament: tournament,
+      ))),
+      title: Center(
+        child: Text(
+          tournament.tournamentName
+        ),
       ),
-      subtitle: Text(
-        tournament.tournamentType
+      titleTextStyle: TextStyle(
+        color: Colors.green,
+        fontSize: 30
+      ),
+      subtitle: Center(
+        child: Text(
+          tournament.tournamentType
+        ),
+      ),
+      subtitleTextStyle: TextStyle(
+        color: Colors.yellow
       ),
     );
   }

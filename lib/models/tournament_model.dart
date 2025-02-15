@@ -29,7 +29,6 @@ class Tournament {
         totalTeams: data["totalTeams"] ?? 0,
         currentSeason: data["currentSeasone"] ?? 0,
         teams: List<String>.from(data["teams"] ?? []),
-        
       );
     }
 }
